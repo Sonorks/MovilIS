@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Movilis</string>
+
+    <string name="title_section1">Prestamos</string>
+    <string name="title_section2">Devolucion Interna</string>
+    <string name="title_section3">Prestamos pendientes</string>
+    <string name="title_section4">Salir</string>
+    <string name="botonPrestamo">Realizar prestamo</string>
+    <string name="botonDevolucion">Confirmar devolución</string>
+    <string name="usuario">Ingresa el ID de usuario</string>
+    <string name="btnLogeo">Ingresar</string>
+    <string name="enviarReporte">Enviar reporte</string>
+    <string name="hintUsuario">Usuario</string>
+    <string name="hintContraseña">Contraseña</string>
+    <string name="tituloLogin">Iniciar Sesión</string>
+    <string name="DevolucionCondicion">El usuario entrega el objeto en buen estado</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="tituloPrestamo">Prestamos</string>
+    <string name="tituloPrestamoTipo">Indica si es un prestamo externo</string>
+    <string name="action_example">Aqui va info general</string>
+    <string name="hintObjeto">Selecciona el objeto</string>
+    <string name="action_settings">Opciones</string>
+    <string name="prestamoIdUsuario">Ingrese el ID del usuario</string>
+
+    <string-array name="articulos">
+        <item>Obj1</item>
+        <item>Obj2</item>
+        <item>Obj3</item>
+        <item>Obj4</item>
+    </string-array>
+</resources>
