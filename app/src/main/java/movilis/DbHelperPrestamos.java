@@ -5,9 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-/**
- * Created by sonorks on 10/05/16.
- */
+
 public class DbHelperPrestamos extends SQLiteOpenHelper {
 
     public DbHelperPrestamos(Context context) {
@@ -19,9 +17,7 @@ public class DbHelperPrestamos extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        System.out.println("Voy a crear la tabla de prestamos");
         db.execSQL(dataBaseManager.CREATE_TABLE_PRESTAMO);
-        Log.d("test","Tabla prestamos creada");
     }
 
     @Override

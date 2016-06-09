@@ -49,15 +49,22 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     }
     public void logear(){
         boolean insertar = manager.primeraVez();
-        if(insertar==true){
+        if(insertar){
             Toast.makeText(this,"Primer uso, por favor espere a que carguen los datos.",Toast.LENGTH_LONG).show();
-            manager.insertarInventario();
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    dataBaseManager manager = new dataBaseManager(getBaseContext());
+                    manager.insertarInventario();
+                    Intent i = new Intent(getBaseContext(),MainActivity.class);
+                    startActivity(i);
+                    //Toast.makeText(getBaseContext(),"Los datos han sido cargados.",Toast.LENGTH_LONG).show();
+                }
+            }).start();
         }
-        else{
-
-            //Toast.makeText(this,"Hay algo en la base de datos o el isNull no funciona.", Toast.LENGTH_SHORT).show();
-        }
-        Intent i = new Intent(this,MainActivity.class);
+        Intent i = new Intent(getBaseContext(),MainActivity.class);
         startActivity(i);
+
     }
+
 }

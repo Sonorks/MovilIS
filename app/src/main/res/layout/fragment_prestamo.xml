@@ -57,10 +57,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/btnPrestamoTipo"
-                    android:layout_marginLeft="150dp"
+                    android:layout_marginLeft="160dp"
                     android:layout_below="@id/txtPrestamoTipo"
-                    android:layout_gravity="center"
-                    android:checked="false" />
+                    android:layout_gravity="center"/>
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -68,7 +67,6 @@
                     android:layout_marginTop="80dp"
                     android:layout_below="@id/btnPrestamoTipo"
                     android:text="@string/botonPrestamo"
-                    android:onClick="clickeado"
                     />
             </RelativeLayout>
         </LinearLayout>

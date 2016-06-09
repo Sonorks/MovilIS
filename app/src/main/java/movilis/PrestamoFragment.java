@@ -67,17 +67,14 @@ public class PrestamoFragment extends android.support.v4.app.Fragment {
         c.moveToFirst();
         int cantidad = c.getCount();
         int j = 0 ;
-        Log.d("test",c.getString(1).toString());
         articulos = new String[cantidad];
         for (int i = 0 ; i<cantidad ; i++){
-
-            if(c.getString(3).toString().equals("1")) {
-                articulos[j] = c.getString(1).toString();
+            if(c.getString(3).equals("1")) {
+                articulos[j] = c.getString(1);
                 j++;
             }
             c.moveToNext();
         }
-        Log.d("test","Actualizando lista de articulos");
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_dropdown_item,articulos);
         objeto.setAdapter(adapter);
     }
@@ -92,13 +89,10 @@ public class PrestamoFragment extends android.support.v4.app.Fragment {
                 Toast.makeText(this.getContext(),"Por favor ingrese el usuario que solicita el prestamo.",Toast.LENGTH_LONG).show();
             }
             else {
-                Log.d("test", "El usuario que solicita prestamo es: " + user);
                 String tipoPrest = "0";
                 if (prestamoExterior.isChecked()) {
-                    Log.d("test", "Prestamo externo");
                     tipoPrest = "1";
                 }
-                //manager = new dataBaseManager(this.getContext());
                 manager.actualizarArticulo(articulo, "0");
                 manager.realizarPrestamo(articulo, user, tipoPrest);
                 actualizarListaArticulos();

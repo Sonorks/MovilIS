@@ -7,9 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-/**
- * Created by sonorks on 10/05/16.
- */
+
 public class dataBaseManager {
     public static final String tableName = "articulos";
     public static final String cn_id = "_id";
@@ -84,12 +82,6 @@ public class dataBaseManager {
         dbInventario.insert(tableName, null, generarContentValues(nombre, codigo, cantidad));
 
     }
-
-    public void eliminarPorArticulo(String Articulo) {
-
-        dbInventario.delete(tableName, cn_name + "=?", new String[]{Articulo});
-
-    }
     public String PrestamoAEliminar(String ID){
         String[] columnasPrestamos = new String[]{cn_id,cn_item,cn_userID, cn_tipo};
         Cursor c = dbPrestamos.query(tableName1, columnasPrestamos, null, null, null, null, null);
@@ -98,7 +90,6 @@ public class dataBaseManager {
             do{
                 if (c.getString(2).equals(ID)) {
                     name = c.getString(1);
-                    Log.d("test", "El nombre del objeto del prestamo eliminado es" + name);
                     eliminarPrestamo(ID);
                     return name; // esta devolviendo el nombre del objeto
                 }
@@ -114,33 +105,26 @@ public class dataBaseManager {
         dbPrestamos.delete(tableName1, cn_userID + "=?", new String[]{ID});
     }
     public Cursor cargarCursorPrestamos() {
-        Log.d("test","Cargar cursos prestamos");
         String[] columnasPrestamos = new String[]{cn_id,cn_item,cn_userID, cn_tipo};
         return dbPrestamos.query(tableName1, columnasPrestamos, null, null, null, null, null);
     }
     public void actualizarArticulo(String articulo, String cant){
         String codigo = obtenerCodigoPorArticulo(articulo);
-        Log.d("test","El codigo del articulo a actualizar es: "+codigo);
         String where[] = {articulo};
         dbInventario.update(tableName,generarContentValues(articulo,codigo,cant),cn_name + "=?",where);
-        Log.d("test","actualizado el articulo"+articulo);
     }
     public String obtenerCodigoPorArticulo(String articulo){
         Cursor c = cargarCursorArticulos();
         if(c.moveToFirst()){
-            Log.d("test","Voy a buscar el articulo por codigo "+articulo);
             do{
-                if(c.getString(1).toString().equals(articulo)){
-                    Log.d("test","El codigo es "+c.getString(2).toString());
-                    return c.getString(2).toString();
+                if(c.getString(1).equals(articulo)){
+                    return c.getString(2);
                 }
             }
             while (c.moveToNext());
-            Log.d("test","no lo encontre");
             return "null";
         }
         else {
-            Log.d("test","Cursor nulo");
             return "null";
         }
     }
@@ -158,17 +142,13 @@ public class dataBaseManager {
         inventario.moveToFirst();
         if(inventario.getCount()==0){
             if(prestamos.getCount()==0) {
-                Log.d("test", "La base de datos esta vacia es necesario insertar el inventario");
-
                 return true;
             }
             else{
-                Log.d("test","Todos los articulos estan prestados.");
                 return false;
             }
         }
         else{
-            Log.d("test","Ya existen datos en la base de datos.");
             return false;
         }
     }

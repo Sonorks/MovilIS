@@ -61,7 +61,6 @@ public class PendienteFragment extends android.support.v4.app.Fragment implement
         Cursor cursor = manager.cargarCursorPrestamos();
         if(cursor.moveToFirst()){
             do{
-                Log.d("test",cursor.getString(3));
                 if(cursor.getString(3).equals("1")){
                     texto = texto.concat("-El usuario con ID "+cursor.getString(2)+" tiene el articulo "+cursor.getString(1) + "\n");
                     existeReporte=true;
@@ -69,9 +68,8 @@ public class PendienteFragment extends android.support.v4.app.Fragment implement
             }while (cursor.moveToNext());
         }
         if(existeReporte) {
-            EmailSender emailSender = new EmailSender();
-            emailSender.enviarCorreo(texto, "Reporte prestamos pendientes");
-            Intent mail = emailSender.enviarCorreo(texto, "Reporte entrega de articulo en mal estado");
+            EmailSender emailSender = new EmailReporte();
+            Intent mail = emailSender.crearCorreoReporte(texto);
             startActivity(Intent.createChooser(mail,"Email "));
         }
         else{
